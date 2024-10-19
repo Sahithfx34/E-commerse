@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+body{
+    font-family: "Raleway", serif;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.nav_container{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0px;
+    align-items: center;
+}
+.logo{
+    height: 52px;
+    width: 174px;
+}
+.nav_links,.nav_items{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.nav_items img{
+    width: 25px;
+}
+button{
+    font-family: "Raleway", serif;
+    padding: 10px 15px;
+    background-color: white;
+    font-size: 15px;
+    font-weight: 500;
+    border: 1px solid rgb(188, 188, 188);
+    border-radius: 30px;
+}
+.cart_container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-right: 4px;
+    padding-bottom: 4px;
+}
+.cart_items_num{
+    padding: 0 4px;
+    background-color: black;
+    font-size: 12px;
+    color: white;
+    position: absolute;
+    border-radius: 50%;
+    right: 0;
+    bottom: 0px;
+}
+.menu{
+    display: none;
+}
+
+@media (max-width:950px){
+    .nav_links,.nav_items{
+        gap: 10px;
+        color: red;
+    }
+    .logo{
+        height: 40px;
+        width: 140px;
+    }
+    .nav_links{
+        font-size: 15px;
+    }
+    .nav_items img{
+        width: 20px;
+    }
+
+}
+
+@media  (max-width:750px) and (min-width:320px){
+    .nav_links{
+        display: none;
+    }
+    .menu{
+        display: flex;
+    }
+    .logo{
+        height: 30px;
+        width: 100px;
+    }
+    .cart_items_num{
+        font-size: 9px;
+        padding:  0 3px;
+    }
+    
+    .nav_items img{
+        width: 15px;
+    }
+}
