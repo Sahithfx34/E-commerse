@@ -27,7 +27,7 @@ body{
 .nav_items img{
     width: 25px;
 }
-button{
+.nav_links button{
     font-family: "Raleway", serif;
     padding: 10px 15px;
     background-color: white;

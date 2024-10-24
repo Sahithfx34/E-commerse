@@ -1,14 +1,17 @@
 import Navbar from "../components/Navbar";
 import { assets } from "../assets/frontend_assets/assets";
-import Latest_Collection from "../components/Latest_Collection";
 import "../css/Home.css"
+import Display_Products from "../components/Display_Products";
+import Subscribe from "../components/Subscribe";
+import Services from "../components/Services";
+import Footer from "../components/Footer";
 const Home = () => {
   return (
     <div className="home_container">
       <Navbar />
 
       <div className="latest">
-        <div>
+        <>
           <div className="hero_container">
             <div className="hero_content">
               <div className="line"></div>
@@ -20,10 +23,14 @@ const Home = () => {
               <div className="line"></div>
             </div>
           </div>
-        </div>
+        </>
         <img src={assets.hero_img} alt="hero" />
       </div>
-      <Latest_Collection/>
+      <Display_Products display="Latest" />
+      <Display_Products display="Best" />
+      <Services/>
+      <Subscribe />
+      <Footer/>
     </div>
   )
 }
