@@ -1,13 +1,22 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { assets } from "../assets/frontend_assets/assets";
 import "../css/Navbar.css"
 
-const Navbar = () => {
+
+const Navbar = ({setSearchDisplay}) => {
+    
+    const navigate = useNavigate();
+    const location = useLocation();
+    const handleSearch=()=>{
+        if (location.pathname !== "/collection") {
+            navigate("/collection");
+        }
+        setSearchDisplay(prev=> !prev);
+    }
+    
     return (
         <div className="nav_container">
-            
             <NavLink to="/"><img className="logo" src={assets.logo} alt="logo" /></NavLink>
-            
             <div className="nav_links">
                 <NavLink to="/">HOME</NavLink>
                 <NavLink to="/collection">COLLECTION</NavLink>
@@ -16,7 +25,7 @@ const Navbar = () => {
                 <button>AdminPanel</button>
             </div>
             <div className="nav_items">
-                <img src={assets.search_icon} alt="search" />
+                <img src={assets.search_icon} alt="search" onClick={handleSearch}/>
                 <img src={assets.profile_icon} alt="profile" />
                 <div className="cart_container">
                     <img src={assets.cart_icon} alt="cart" />

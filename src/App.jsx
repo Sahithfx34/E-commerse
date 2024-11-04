@@ -1,5 +1,6 @@
 
 import Routing from "./router/Routing"
+import "./App.css";
 
 const App = () => {
   return (

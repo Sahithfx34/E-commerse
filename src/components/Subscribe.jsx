@@ -6,7 +6,7 @@ const Subscribe = () => {
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus explicabo </p>
         <div>
           <input type="email" placeholder="Enter your email" />
-          <button>SUBSCRIBE</button>
+          <button className="btn">SUBSCRIBE</button>
         </div>
     </div>
   )

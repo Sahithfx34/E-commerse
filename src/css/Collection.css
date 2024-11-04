@@ -1,0 +1,17 @@
+.collection_container{
+    width: 85%;
+    margin: 0 auto;
+}
+.filter_container>div{
+    border: 1px solid gray;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 30px;
+}
+.collection_sub{
+    display: flex;
+    gap: 30px;
+}
+.products_container{
+    
+}

@@ -23,7 +23,10 @@ body{
     align-items: center;
     
 }
-
+.nav_links a {
+    text-decoration: none;
+    color: inherit;
+}
 .nav_items img{
     width: 25px;
 }
@@ -60,7 +63,6 @@ body{
 @media (max-width:950px){
     .nav_links,.nav_items{
         gap: 10px;
-        color: red;
     }
     .logo{
         height: 40px;
