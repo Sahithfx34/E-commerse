@@ -1,12 +1,16 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { assets } from "../assets/frontend_assets/assets";
 import "../css/Navbar.css";
+import { useSelector } from "react-redux";
 
-const Navbar = ({setSearchDisplay,cartTotalItems}) => {
+const Navbar = ({setSearchDisplay}) => {
     
     const navigate = useNavigate();
     const location = useLocation();
     
+    const cart_items = useSelector((state)=>state.cartItems.value);
+    const cartTotalItems = cart_items.reduce((sum,item)=> sum+item.quantity,0)
+
     const handleSearch=()=>{
         if (location.pathname !== "/collection") {
             navigate("/collection");
@@ -31,7 +35,10 @@ const Navbar = ({setSearchDisplay,cartTotalItems}) => {
                 <img src={assets.profile_icon} alt="profile" />
                 <NavLink to="/cart"><div className="cart_container">
                     <img src={assets.cart_icon} alt="cart" />
-                    <div className="cart_items_num">{cartTotalItems>9? "9+" : cartTotalItems}</div>
+                    {
+                        cartTotalItems!==0?<div className="cart_items_num">{cartTotalItems>9? "9+" : cartTotalItems}</div>:<></>
+                    }
+                    
                 </div></NavLink>
                 <img className="menu" src={assets.menu_icon} alt="menu"/>
             </div>

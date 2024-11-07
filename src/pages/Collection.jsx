@@ -6,8 +6,6 @@ import Footer from "../components/Footer";
 import { products } from "../assets/frontend_assets/assets";
 import "../css/Collection.css";
 
-
-
 const Collection = () => {
   const [trackCategories, setTrackCategories] = useState([]);
   const [trackTypes, setTrackTypes] = useState([]);

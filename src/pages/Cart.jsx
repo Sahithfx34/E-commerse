@@ -11,7 +11,6 @@ const Cart = () => {
   const cart_items = useSelector((state)=>state.cartItems.value);
   const dispatch = useDispatch();
   const [subTotal, setSubTotal] = useState(0);
-  const [cartTotalItems,setcartTotalItems] = useState(0);
 
   const handleQuantity = (value,item)=>{
     dispatch(updateQuantity({id: item._id, size: item.size, quantity: parseInt(value)}))
@@ -19,15 +18,14 @@ const Cart = () => {
 
   useEffect(()=>{
     const total = cart_items.reduce((sum,item)=> item.price*item.quantity+sum,0);
-    const cartTotalItems = cart_items.reduce((sum,item)=> sum+item.quantity,0)
-    setSubTotal(total);
-    setcartTotalItems(cartTotalItems);
+    
+    setSubTotal(total)
 
   },[cart_items])
 
   return (
     <div className="cart_page_container">
-        <Navbar cartTotalItems={cartTotalItems}/>
+        <Navbar/>
         <div className="your_cart">
             <Title title="Your" sub="cart"/>
             {
