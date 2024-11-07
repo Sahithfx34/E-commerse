@@ -26,8 +26,8 @@ const Home = () => {
         </>
         <img src={assets.hero_img} alt="hero" />
       </div>
-      <Display_Products display="Latest" />
-      <Display_Products display="Best" />
+      <Display_Products display="Latest" sub ="Collections"/>
+      <Display_Products display="Best" sub="Sellers"/>
       <Services/>
       <Subscribe />
       <Footer/>

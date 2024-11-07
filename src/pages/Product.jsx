@@ -7,6 +7,8 @@ import { useState } from "react";
 import { Rating } from "@mui/material";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch, useSelector } from "react-redux";
+import { addItem } from "../features/cart/CartSlicer";
 
 const Product = () => {
     const {id} = useParams();
@@ -14,8 +16,8 @@ const Product = () => {
     const [currImage,setCurrImage] = useState(defaultImg);
     const [size,setSize] = useState(null);
     
-    // const [idExist,setIdExist] = useState(false);  
-
+    const dispatch = useDispatch();
+    
     const handleImage=(item)=>{
       setCurrImage(item)
     }
@@ -25,9 +27,13 @@ const Product = () => {
         console.log(item);
     }
     const handleCart=()=>{
+      const item = products.find(item=>item._id ===  id);
+      
       if(!size){
         toast.error("Select product size")
       }
+      dispatch(addItem({...item,size}));
+      
     }
 
   return (

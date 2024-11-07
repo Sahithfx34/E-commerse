@@ -22,19 +22,21 @@ const Collection = () => {
     console.log(trackCategories, trackTypes);
   }, [trackCategories, trackTypes, searchInput]);
 
-  const applyFilters = () => {
+  const applyFilters = () => {    
     let filtered = products;
 
     if(trackCategories.length > 0){
       filtered = filtered.filter(item => trackCategories.includes(item.category));
     }
+
     if(trackTypes.length > 0){
       filtered = filtered.filter(item => trackTypes.includes(item.subCategory));
     }
+
     if(searchInput){
       filtered = filtered.filter(item => item.name.toLowerCase().includes(searchInput));
     }
-        
+
     setUpdatedList(filtered);
   };
   

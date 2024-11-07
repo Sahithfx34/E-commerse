@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { products } from "../assets/frontend_assets/assets";
 import "../css/Home.css";
 import { Link } from "react-router-dom";
+import Title from "./Title";
 
-const Display_Products = ({ display }) => {
+const Display_Products = ({ display,sub }) => {
     const [displayProduct, setDisplayProduct] = useState([]);
 
     useEffect(() => {
@@ -12,10 +13,7 @@ const Display_Products = ({ display }) => {
 
     return (
         <>
-            <div className="title">
-                <h3><span>{display}</span> COLLECTION</h3>
-                <div className="line"></div>
-            </div>
+            <Title title={display} sub ={sub}/>
             <p className="prod_des">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, quaerat quasi? </p>
             <div className="products">
 
