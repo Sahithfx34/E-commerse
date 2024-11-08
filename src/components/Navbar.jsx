@@ -1,23 +1,24 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { assets } from "../assets/frontend_assets/assets";
 import "../css/Navbar.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Toggle } from "../features/search/SearchSlicer";
 
-const Navbar = ({setSearchDisplay}) => {
+const Navbar = () => {
     
     const navigate = useNavigate();
     const location = useLocation();
     
     const cart_items = useSelector((state)=>state.cartItems.value);
+    const dispatch = useDispatch();
+
     const cartTotalItems = cart_items.reduce((sum,item)=> sum+item.quantity,0)
 
     const handleSearch=()=>{
         if (location.pathname !== "/collection") {
             navigate("/collection");
-            setSearchDisplay(true); // Ensure search bar appears on first click when navigating to collection
-          } else {
-            setSearchDisplay(prev => !prev); // Toggle only if already on the collection page
-          }
+        } 
+        dispatch(Toggle());
     }
     
     return (
@@ -36,7 +37,7 @@ const Navbar = ({setSearchDisplay}) => {
                 <NavLink to="/cart"><div className="cart_container">
                     <img src={assets.cart_icon} alt="cart" />
                     {
-                        cartTotalItems!==0?<div className="cart_items_num">{cartTotalItems>9? "9+" : cartTotalItems}</div>:<></>
+                        cartTotalItems?<div className="cart_items_num">{ cartTotalItems>9? "9+" : cartTotalItems}</div>:<></>
                     }
                     
                 </div></NavLink>

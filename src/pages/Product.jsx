@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Rating } from "@mui/material";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addItem } from "../features/cart/CartSlicer";
 
 const Product = () => {

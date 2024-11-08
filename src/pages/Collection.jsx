@@ -5,12 +5,13 @@ import Filters from "../components/Filters";
 import Footer from "../components/Footer";
 import { products } from "../assets/frontend_assets/assets";
 import "../css/Collection.css";
+import { useSelector } from "react-redux";
 
 const Collection = () => {
   const [trackCategories, setTrackCategories] = useState([]);
   const [trackTypes, setTrackTypes] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-  const [searchDisplay,setSearchDisplay] = useState(false);
+  const searchDisplay = useSelector((state)=>state.ToggleSearch.value)
   const [updatedList, setUpdatedList] = useState(products);
 
   const sort = ["Relevant", "Low to High", "High to Low"];
@@ -78,11 +79,11 @@ const Collection = () => {
 
   return (
     <div className="collection_container">
-      <Navbar setSearchDisplay={setSearchDisplay}/>
+      <Navbar />
       <hr />
       <div>
-        {searchDisplay?
-        <input type="text" placeholder="Search" onChange={handleChange} />:<></>
+        {searchDisplay &&
+        <input type="text" placeholder="Search" onChange={handleChange} />
         }
       </div>
       <div className="collection_sub">

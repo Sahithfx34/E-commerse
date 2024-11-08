@@ -5,27 +5,20 @@ import Title from "../components/Title";
 import "../css/Cart.css";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { removeItem , updateQuantity} from "../features/cart/CartSlicer";
-import { useEffect, useState } from "react";
 
 const Cart = () => {
   const cart_items = useSelector((state)=>state.cartItems.value);
   const dispatch = useDispatch();
-  const [subTotal, setSubTotal] = useState(0);
 
   const handleQuantity = (value,item)=>{
     dispatch(updateQuantity({id: item._id, size: item.size, quantity: parseInt(value)}))
   }
 
-  useEffect(()=>{
-    const total = cart_items.reduce((sum,item)=> item.price*item.quantity+sum,0);
-    
-    setSubTotal(total)
-
-  },[cart_items])
+  const subTotal = cart_items.reduce((sum,item)=> item.price*item.quantity+sum,0);
 
   return (
     <div className="cart_page_container">
-        <Navbar/>
+        <Navbar />
         <div className="your_cart">
             <Title title="Your" sub="cart"/>
             {
