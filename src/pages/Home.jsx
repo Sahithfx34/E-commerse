@@ -5,11 +5,11 @@ import Display_Products from "../components/Display_Products";
 import Subscribe from "../components/Subscribe";
 import Services from "../components/Services";
 import Footer from "../components/Footer";
+import { ToastContainer } from "react-toastify";
 const Home = () => {
   return (
     <div className="home_container">
       <Navbar />
-
       <div className="latest">
         <>
           <div className="hero_container">
@@ -31,6 +31,7 @@ const Home = () => {
       <Services/>
       <Subscribe />
       <Footer/>
+      <ToastContainer/>
     </div>
   )
 }

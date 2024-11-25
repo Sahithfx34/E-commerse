@@ -109,16 +109,22 @@
 .sub_container{
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
     align-items: center;
 }
 .sub_container input{
     align-self: flex-start;
-    width: 40vw;
+    width: 32vw;
     padding: 20px 10px;
     color: gray;
     font-size: 16px;
     border: 1px solid rgb(209, 209, 209);
+}
+.sub_container h3{
+    font-size: 27px;
+}
+.sub_container p{
+    color: gray;
 }
 .btn{
     padding: 22px 50px;
@@ -148,7 +154,7 @@
     text-transform: uppercase;
 }
 hr{
-    border-top:  1px solid rgb(212, 212, 212);
+    border-top:  1px solid rgb(229, 229, 229);
 }
 
 .footer_content ul{

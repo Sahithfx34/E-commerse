@@ -1,16 +1,15 @@
 
 const Filters = ({handleCategories,handleTypes}) => {
-
   const categories = ["Men", "Women", "Kids"];
   const type = ["Topwear", "Bottomwear", "Winterwear"];
 
   return (
     <div className="filter_container">
-          <h4>Filter</h4>
+          <h4>filters</h4>
           <div>
             <h4>Categories</h4>
             {categories.map((item) => (
-              <div key={item}>
+              <div key={item} className="filter_items">
                 <input
                   type="checkbox"
                   name={item}
@@ -24,7 +23,7 @@ const Filters = ({handleCategories,handleTypes}) => {
           <div>
             <h4>Type</h4>
             {type.map((item) => (
-              <div key={item}>
+              <div key={item} className="filter_items">
                 <input
                   type="checkbox"
                   name={item}

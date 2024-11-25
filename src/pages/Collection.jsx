@@ -5,16 +5,20 @@ import Filters from "../components/Filters";
 import Footer from "../components/Footer";
 import { products } from "../assets/frontend_assets/assets";
 import "../css/Collection.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Title from "../components/Title";
+import { assets } from "../assets/frontend_assets/assets";
+import { Cross } from "../features/search/SearchSlicer";
 
 const Collection = () => {
   const [trackCategories, setTrackCategories] = useState([]);
   const [trackTypes, setTrackTypes] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-  const searchDisplay = useSelector((state)=>state.ToggleSearch.value)
   const [updatedList, setUpdatedList] = useState(products);
+  const searchDisplay = useSelector((state)=>state.ToggleSearch.value)
 
   const sort = ["Relevant", "Low to High", "High to Low"];
+  const dispatch = useDispatch();
 
   useEffect(() => {
     applyFilters();
@@ -58,6 +62,9 @@ const Collection = () => {
   const handleChange = (e) => {
     setSearchInput(e.target.value);
   };
+  const handleCross=()=>{
+    dispatch(Cross())
+  }
   
   const handleSort = (e) => {
     const copyProd= updatedList.slice();
@@ -80,23 +87,34 @@ const Collection = () => {
   return (
     <div className="collection_container">
       <Navbar />
-      <hr />
-      <div>
+      
         {searchDisplay &&
-        <input type="text" placeholder="Search" onChange={handleChange} />
+        <div className="search">
+        <>
+          <input type="text" placeholder="Search" onChange={handleChange} />
+          <img className="search_icon" src={assets.search_icon} alt="search"/>
+          <div>
+            <img className="cross_icon" src={assets.cross_icon} alt="cross" onClick={handleCross} />
+          </div>
+        </>
+        </div>
         }
-      </div>
       <div className="collection_sub">
         <Filters handleCategories={handleCategories} handleTypes={handleTypes}/>
         <div className="products_container">
           <div>
-            <h3><span>All</span> Collections</h3>
-            <div className="line"></div>
-            <select onChange={handleSort}>
-              {sort.map((item, i) => (
-                <option key={i} value={item}>Sort By: {item}</option>
-              ))}
-            </select>
+            <div>
+              <div className="collection_title">
+                <Title title="ALL" sub="Collections"/>
+                <select onChange={handleSort}>
+                  {sort.map((item, i) => (
+                    <option key={i} value={item}>Sort By: {item}</option>
+                  ))}
+                </select>
+
+              </div>
+
+            </div>
           </div>
           <div className="products">
             {updatedList.map(item => (

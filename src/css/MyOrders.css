@@ -1,0 +1,46 @@
+.my_orders{
+    width: 85%;
+    margin: 0 auto;
+}
+
+.orders_title{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.order_items >div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.order_items{
+    padding: 10px;
+    border-top: 1px solid rgb(196, 196, 196);
+    border-bottom: 1px solid rgb(230, 230, 230);
+}
+.order_items button{
+    padding: 10px;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 4px;
+}
+.order_items img{
+    width: 120px;
+
+}
+.order_info{
+    display: flex;
+    gap: 20px;
+}
+.green_bot{
+    padding: 10px;
+    border-radius: 50%;
+    background-color: rgb(6, 188, 6);
+}
+.status{
+    display: flex;
+    gap: 10px;
+}
+.order_items span{
+    color: gray;
+}

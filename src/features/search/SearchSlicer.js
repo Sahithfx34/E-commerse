@@ -10,12 +10,14 @@ export const searchSlicer = createSlice({
   reducers: {
     Toggle: (state) => {
       state.value =!state.value;
+    },
+    Cross:(state)=>{
+      state.value = false;
     }
-    
   },
 })
 
 
-export const {Toggle} = searchSlicer.actions
+export const {Toggle,Cross} = searchSlicer.actions
 
 export default searchSlicer.reducer

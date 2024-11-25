@@ -4,54 +4,48 @@ import Navbar from "../components/Navbar";
 import Title from "../components/Title";
 import "../css/Cart.css";
 import DeleteIcon from '@mui/icons-material/Delete';
-import { removeItem , updateQuantity} from "../features/cart/CartSlicer";
+import { removeItem, updateQuantity } from "../features/cart/CartSlicer";
+import Cart_totals from "../components/Cart_totals";
 
 const Cart = () => {
-  const cart_items = useSelector((state)=>state.cartItems.value);
+  const cart_items = useSelector((state) => state.cartItems.value);
   const dispatch = useDispatch();
 
-  const handleQuantity = (value,item)=>{
-    dispatch(updateQuantity({id: item._id, size: item.size, quantity: parseInt(value)}))
+  const handleQuantity = (value, item) => {
+    dispatch(updateQuantity({ id: item._id, size: item.size, quantity: parseInt(value) }))
   }
-
-  const subTotal = cart_items.reduce((sum,item)=> item.price*item.quantity+sum,0);
-
+  
   return (
     <div className="cart_page_container">
-        <Navbar />
-        <div className="your_cart">
-            <Title title="Your" sub="cart"/>
-            {
-              cart_items.map((item)=> 
-                <div className="cart_item" key={item._id}>
-                  <img src={item.image[0]} alt={item.name}/>
-                  <div>
-                    <p>{item.name}</p>
+      <Navbar />
+      <hr />
+      <div className="your_cart">
+        <div className="cart_top_title">
+          <Title title="Your" sub="cart" />
+        </div>
+        {
+          cart_items.map((item) =>
+            <div className="cart_item_container" key={item._id}>
+              <div className="cart_item">
+                <img src={item.image[0]} alt={item.name} />
+                <div>
+                  <h4>{item.name}</h4>
+                  
+                  <div className="cart_sub_content">
                     <p>${item.price}</p>
                     <p>{item.size}</p>
-
                   </div>
-                  <input type="number" min={1} max={99} value={item.quantity} onChange={(e)=>handleQuantity(e.target.value,item)}/>
-                  <DeleteIcon onClick={()=>dispatch(removeItem(item))}/>
+
                 </div>
-              )
-            }
-        </div>
-        <div className="amount"></div>
-            <Title title="cart" sub="totals"/>
-            <div>
-              <p>Subtotal</p>
-              <p>${subTotal?subTotal:0}</p>
+              </div>
+              <input type="number" min={1} max={99} value={item.quantity} onChange={(e) => handleQuantity(e.target.value, item)} />
+              <DeleteIcon className="icon" onClick={() => dispatch(removeItem(item))} />
             </div>
-            <div>
-              <p>Shipping Fee</p>
-              <p>$10.00</p>
-            </div>
-            <div>
-              <p>Total</p>
-              <p>${subTotal>0?subTotal+10:0}</p>
-            </div>
-        <Footer/>
+          )
+        }
+      </div>
+      <Cart_totals btnDisplay={true}/>
+      <Footer />
     </div>
   )
 }

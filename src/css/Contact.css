@@ -1,0 +1,42 @@
+.contact_container{
+    width: 85%;
+    margin: 0 auto;
+}
+.contact_content{
+    display: flex;
+    justify-content: center;
+    margin: 50px 0 100px 0;
+    gap: 40px;
+}
+.contact_hero_img img{
+    width: 100%;
+}
+.contact_hero_img{
+    width: 40%;
+}
+.contact_sub_content{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    justify-content:center ;
+}
+.contact_container p{
+    margin-bottom: 8px;
+    color: rgb(63, 63, 63);
+}
+
+.contact_sub_content button{
+    align-self: flex-start;
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    padding: 20px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.contact_sub_content button:focus {
+    background-color: black;
+    color: white;
+}

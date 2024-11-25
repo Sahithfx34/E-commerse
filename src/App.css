@@ -9,3 +9,6 @@
 body,button{
     font-family: "Raleway", serif;
 }
+button{
+    cursor: pointer;
+}

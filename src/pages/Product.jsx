@@ -9,49 +9,58 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from "react-redux";
 import { addItem } from "../features/cart/CartSlicer";
+import NotFound from "./NotFound";
 
 const Product = () => {
-    const {id} = useParams();
-    const defaultImg = products.filter(item=>item._id ===  id).map((i)=>i.image[0]);
-    const [currImage,setCurrImage] = useState(defaultImg);
-    const [size,setSize] = useState(null);
-    
-    const dispatch = useDispatch();
-    
-    const handleImage=(item)=>{
-      setCurrImage(item)
+  const { id } = useParams();
+  const defaultImg = products.filter(item => item._id === id).map((i) => i.image[0]);
+  const [currImage, setCurrImage] = useState(defaultImg);
+  const [size, setSize] = useState(null);
+
+
+
+
+
+  const dispatch = useDispatch();
+
+  const handleImage = (item) => {
+    setCurrImage(item)
+  }
+
+  const handleSize = (item) => {
+    setSize(item);
+  }
+  const handleCart = () => {
+    const item = products.find(item => item._id === id);
+
+    if (!size) {
+      toast.error("Select product size")
+    } else {
+      dispatch(addItem({ ...item, size }));
+      toast.success("Added to cart")
+
     }
 
-    const handleSize=(item)=>{
-      setSize(item);
-        console.log(item);
-    }
-    const handleCart=()=>{
-      const item = products.find(item=>item._id ===  id);
-      
-      if(!size){
-        toast.error("Select product size")
-      }
-      dispatch(addItem({...item,size}));
-      
-    }
+  }
 
   return (
-    <div className="product_container">
+    products.some(item => item._id === id) ?
+      <div className="product_container">
         <Navbar />
-        <ToastContainer/>
-        <hr/>
+        <hr />
+        <ToastContainer />
+        <hr />
         {
-          products.filter(item=>item._id ===  id).map(item=>(
+          products.filter(item => item._id === id).map(item => (
             <div key={item._id}>
               <div className="hero_product_container">
                 <div className="all_images">
                   {
-                    item.image.map((img,i)=> <img onClick={()=>handleImage(img)}  key={i} src={img} alt={item.name}/> )           
+                    item.image.map((img, i) => <img onClick={() => handleImage(img)} key={i} src={img} alt={item.name} />)
                   }
                 </div>
                 <div className="currImg">
-                  <img src={currImage} alt={item.name}/>
+                  <img src={currImage} alt={item.name} />
                 </div>
                 <div className="hero_product_content">
                   <h3>{item.name}</h3>
@@ -63,18 +72,18 @@ const Product = () => {
                   <p>{item.description}</p>
                   <p>Select Size</p>
                   <div className="hero_size">
-                    {item.sizes.map((item,i)=>(
-                      <div tabIndex="0" key={i} value={item} onClick={()=>handleSize(item)}>{item}</div>
+                    {item.sizes.map((item, i) => (
+                      <div tabIndex="0" key={i} value={item} onClick={() => handleSize(item)}>{item}</div>
                     ))}
                   </div>
                   <button onClick={handleCart}>ADD TO CART</button>
-                  <hr/>
+                  <hr />
                   <div className="hero_desc">
-                    
+
                     <p>100% Original product.</p>
                     <p>Cash on delivery is available on this product.</p>
                     <p>Easy return and exchange policy within 7 days.</p>
-                    
+
                   </div>
                 </div>
               </div>
@@ -89,12 +98,14 @@ const Product = () => {
                 </div>
               </div>
               <div></div>
-              <Footer/>
+              <Footer />
             </div>
-          ))
 
+          ))
         }
-    </div>
+      </div>
+      :
+      <NotFound />
   )
 }
 
