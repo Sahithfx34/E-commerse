@@ -2,34 +2,39 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { assets } from "../assets/frontend_assets/assets";
 import "../css/Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
+import React,{ useMemo,useCallback } from "react";
 import { Toggle } from "../features/search/SearchSlicer";
 import useLoginForm from "../hooks/useLoginForm";
 
 const Navbar = () => {
+    const cart_items = useSelector((state) => state.cartItems.value);
+
     const navigate = useNavigate();
     const location = useLocation();
-    const cart_items = useSelector((state) => state.cartItems.value);
     const dispatch = useDispatch();
     const { isSubmitted, handleLogout } = useLoginForm();
 
-    const cartTotalItems = cart_items.reduce((sum, item) => sum + item.quantity, 0);
+    const cartTotalItems = useMemo(
+        () => cart_items.reduce((sum, item) => sum + item.quantity, 0),
+        [cart_items]
+      );
 
-    const handleSearch = () => {
+      const handleSearch = useCallback(() => {
         if (location.pathname !== "/collection") {
-            navigate("/collection");
+          navigate("/collection");
         }
         dispatch(Toggle());
-    };
-
-    const handleProfile = () => {
+      }, [navigate, location.pathname, dispatch]);
+    
+      const handleProfile = useCallback(() => {
         if (!isSubmitted) {
-            navigate("/login");
+          navigate("/login");
         }
-    };
-
-    const handleMyOrders = () => {
+      }, [isSubmitted, navigate]);
+    
+      const handleMyOrders = useCallback(() => {
         navigate("/myorders");
-    };
+      }, [navigate]);
 
 
     return (
@@ -70,4 +75,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default React.memo(Navbar);

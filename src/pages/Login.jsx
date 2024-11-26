@@ -1,17 +1,21 @@
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
- import useLoginForm from "../hooks/useLoginForm";
-
+import React, { Suspense } from "react";
+import useLoginForm from "../hooks/useLoginForm";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../css/Profile.css";
 import { NavLink } from "react-router-dom";
+import Loading from "../components/Loading";
+
+const Navbar = React.lazy(() => import("../components/Navbar"));
+const Footer = React.lazy(() => import("../components/Footer"));
 
 
 const Login = () => {
   const { formData, handleChange, handleSubmit } = useLoginForm();
 
   return (
+    <Suspense fallback={<Loading/>}>
+
     <div className="login_container">
 
       <Navbar />
@@ -36,6 +40,7 @@ const Login = () => {
       <Footer />
       <ToastContainer /> 
     </div>
+    </Suspense>
   );
 };
 

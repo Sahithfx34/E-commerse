@@ -1,3 +1,6 @@
+import React from "react";
+
+// eslint-disable-next-line react/prop-types
 const Title = ({title,sub}) => {
 
   return (
@@ -9,4 +12,4 @@ const Title = ({title,sub}) => {
 
 }
 
-export default Title;
+export default React.memo(Title);

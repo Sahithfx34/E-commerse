@@ -17,19 +17,12 @@ const Product = () => {
   const [currImage, setCurrImage] = useState(defaultImg);
   const [size, setSize] = useState(null);
 
-
-
-
-
   const dispatch = useDispatch();
 
-  const handleImage = (item) => {
-    setCurrImage(item)
-  }
+  const handleImage = (item) => setCurrImage(item);
+  
+  const handleSize = (item) => setSize(item);
 
-  const handleSize = (item) => {
-    setSize(item);
-  }
   const handleCart = () => {
     const item = products.find(item => item._id === id);
 

@@ -4,7 +4,6 @@ const Footer = () => {
     return (
         <div className="footer">
             <div className="footer_content">
-
                 <div className="footer_logo">
                     <img src={assets.logo} alt="logo" />
                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit ex, accusamus est accusantium cupiditate, quas officiis numquam, ea explicabo nam ipsam harum optio dolorum. Iste quaerat consequuntur laborum fugiat voluptates.</p>

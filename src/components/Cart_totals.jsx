@@ -4,22 +4,27 @@ import Title from "./Title";
 import "../css/Cart.css";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import React,{useMemo,useCallback} from "react";
 import { ToastContainer } from "react-toastify";
 
+// eslint-disable-next-line react/prop-types
 const Cart_totals = ({btnDisplay}) => {
-    const navigate = useNavigate()
-    const cart_items = useSelector((state) => state.cartItems.value);
+  const navigate = useNavigate();
+  const cart_items = useSelector((state) => state.cartItems.value);
+
+  const { subTotal, cartTotalItems } = useMemo(() => {
     const subTotal = cart_items.reduce((sum, item) => item.price * item.quantity + sum, 0);
     const cartTotalItems = cart_items.reduce((sum, item) => sum + item.quantity, 0);
+    return { subTotal, cartTotalItems };
+  }, [cart_items]);
 
-    const handleClick =()=>{
-      if(!cartTotalItems){
-        toast.error("Add items to cart")
-      }else{
-        navigate("/place-order");
-      }
-
+  const handleClick = useCallback(() => {
+    if (!cartTotalItems) {
+      toast.error("Add items to cart");
+    } else {
+      navigate("/place-order");
     }
+  }, [cartTotalItems, navigate]);
 
   return (
     <>
@@ -48,4 +53,4 @@ const Cart_totals = ({btnDisplay}) => {
   )
 }
 
-export default Cart_totals;
+export default React.memo(Cart_totals);

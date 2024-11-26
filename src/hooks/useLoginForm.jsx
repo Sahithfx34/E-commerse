@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useMemo,useCallback } from "react";
 import "react-toastify/dist/ReactToastify.css";
 
 const useLoginForm = () => {
@@ -11,16 +12,18 @@ const useLoginForm = () => {
   }); 
   const navigate = useNavigate();
 
-  const validate = () => {
+  const validate = useMemo(() => {
+    return () => {
       const errors = [];
       if (!formData.email) {
-          errors.push("Email is required");
+        errors.push("Email is required");
       }
       if (!formData.password) {
-          errors.push("Password is required");
+        errors.push("Password is required");
       }
       return errors;
-  };
+    };
+  }, [formData.email, formData.password]);
 
   const handleChange = (e) => {
       const { name, value } = e.target;
@@ -39,7 +42,7 @@ const useLoginForm = () => {
               localStorage.setItem(
                   "isSubmitted",
                   JSON.stringify({ loggedIn: true, email: formData.email })
-              ); // Save login state in localStorage
+              ); 
               toast.success("Login successful!");
               navigate("/"); 
           } else {
@@ -50,12 +53,12 @@ const useLoginForm = () => {
       }
   };
 
-  const handleLogout = () => {
-      setIsSubmitted({ loggedIn: false, email: "" });
-      localStorage.removeItem("isSubmitted"); 
-      toast.success("Logged out successfully!");
-      navigate("/login"); 
-  };
+  const handleLogout = useCallback(() => {
+    setIsSubmitted({ loggedIn: false, email: "" });
+    localStorage.removeItem("isSubmitted");
+    toast.success("Logged out successfully!");
+    navigate("/login"); // Redirect to login page
+  }, [navigate]);
 
   return {
       formData,

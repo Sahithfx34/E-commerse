@@ -1,4 +1,6 @@
+import React from "react";
 
+// eslint-disable-next-line react/prop-types
 const Filters = ({handleCategories,handleTypes}) => {
   const categories = ["Men", "Women", "Kids"];
   const type = ["Topwear", "Bottomwear", "Winterwear"];
@@ -38,4 +40,4 @@ const Filters = ({handleCategories,handleTypes}) => {
   )
 }
 
-export default Filters
+export default React.memo(Filters);

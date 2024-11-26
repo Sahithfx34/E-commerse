@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { products } from "../assets/frontend_assets/assets";
 import "../css/Home.css";
 import { Link } from "react-router-dom";
 import Title from "./Title";
 
+// eslint-disable-next-line react/prop-types
 const Display_Products = ({ display,sub }) => {
     const [displayProduct, setDisplayProduct] = useState([]);
 
@@ -32,4 +33,4 @@ const Display_Products = ({ display,sub }) => {
     );
 }
 
-export default Display_Products;
+export default React.memo(Display_Products);
